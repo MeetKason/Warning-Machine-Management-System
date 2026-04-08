@@ -7,7 +7,7 @@
 ### 安装依赖
 
 ```bash
-cd vue-pure-admin
+cd Warning-Machine-Management-System
 
 pnpm install
 ```

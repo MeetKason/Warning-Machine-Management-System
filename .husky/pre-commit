@@ -1,1 +1,6 @@
+#!/bin/sh
+
+# 手动把 pnpm 所在的目录加入 PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 pnpm exec lint-staged

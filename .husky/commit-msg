@@ -1,1 +1,7 @@
-pnpm exec commitlint --edit $1
+#!/bin/sh
+
+# 1. 手动把 pnpm 所在的目录加入 PATH (和刚才 pre-commit 加的一样)
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+# 2. 执行 commit 消息检查
+pnpm exec commitlint --edit "$1"

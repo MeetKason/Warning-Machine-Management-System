@@ -59,7 +59,7 @@ const { locale, translationCh, translationEn } = useTranslationLang();
 
 const ruleForm = reactive({
   username: "admin",
-  password: "admin123",
+  password: "zs@123456",
   verifyCode: ""
 });
 
@@ -217,6 +217,7 @@ watch(loginDay, value => {
               </el-form-item>
             </Motion>
 
+            <!-- 验证码输入 -->
             <Motion :delay="200">
               <el-form-item prop="verifyCode">
                 <el-input
@@ -283,7 +284,8 @@ watch(loginDay, value => {
               </el-form-item>
             </Motion>
 
-            <Motion :delay="300">
+            <!-- 登录方式选择 -->
+            <!-- <Motion :delay="300">
               <el-form-item>
                 <div class="w-full h-5 flex-bc">
                   <el-button
@@ -297,10 +299,10 @@ watch(loginDay, value => {
                   </el-button>
                 </div>
               </el-form-item>
-            </Motion>
+            </Motion> -->
           </el-form>
-
-          <Motion v-if="currentPage === 0" :delay="350">
+          <!-- 第三方登录 -->
+          <!-- <Motion v-if="currentPage === 0" :delay="350">
             <el-form-item>
               <el-divider>
                 <p class="text-gray-500 text-xs">
@@ -321,7 +323,7 @@ watch(loginDay, value => {
                 </span>
               </div>
             </el-form-item>
-          </Motion>
+          </Motion> -->
           <!-- 手机号登录 -->
           <LoginPhone v-if="currentPage === 1" />
           <!-- 二维码登录 -->
@@ -336,12 +338,8 @@ watch(loginDay, value => {
     <div
       class="w-full flex-c absolute bottom-3 text-sm text-[rgba(0,0,0,0.6)] dark:text-[rgba(220,220,242,0.8)]"
     >
-      Copyright © 2020-present
-      <a
-        class="hover:text-primary!"
-        href="https://github.com/pure-admin"
-        target="_blank"
-      >
+      Copyright © 2026-present
+      <a class="hover:text-primary!" href="" target="_blank">
         &nbsp;{{ title }}
       </a>
     </div>

@@ -17,29 +17,27 @@ export function useColumns() {
     },
     {
       sortable: true,
-      label: "需求人数",
-      prop: "requiredNumber",
+      label: "在线设备数",
+      prop: "deviceOnline",
       filterMultiple: false,
       filterClassName: "pure-table-filter",
       filters: [
-        { text: "≥16000", value: "more" },
-        { text: "<16000", value: "less" }
+        { text: "≥3200", value: "more" },
+        { text: "<3200", value: "less" }
       ],
-      filterMethod: (value, { requiredNumber }) => {
-        return value === "more"
-          ? requiredNumber >= 16000
-          : requiredNumber < 16000;
+      filterMethod: (value, { deviceOnline }) => {
+        return value === "more" ? deviceOnline >= 3200 : deviceOnline < 3200;
       }
     },
     {
       sortable: true,
-      label: "提问数量",
-      prop: "questionNumber"
+      label: "预警上报量",
+      prop: "warningCount"
     },
     {
       sortable: true,
-      label: "解决数量",
-      prop: "resolveNumber"
+      label: "已处置量",
+      prop: "handledCount"
     },
     {
       sortable: true,

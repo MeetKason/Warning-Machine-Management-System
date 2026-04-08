@@ -109,7 +109,7 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card class="bar-card" shadow="never">
           <div class="flex justify-between">
-            <span class="text-md font-medium">分析概览</span>
+            <span class="text-md font-medium">预警分析概览</span>
             <Segmented v-model="curWeek" :options="optionsBasis" />
           </div>
           <div class="flex justify-between items-start mt-3">
@@ -140,7 +140,7 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card shadow="never">
           <div class="flex justify-between">
-            <span class="text-md font-medium">解决概率</span>
+            <span class="text-md font-medium">处置效率</span>
           </div>
           <div
             v-for="(item, index) in progressData"
@@ -187,7 +187,7 @@ const optionsBasis: Array<OptionsType> = [
       >
         <el-card shadow="never">
           <div class="flex justify-between">
-            <span class="text-md font-medium">数据统计</span>
+            <span class="text-md font-medium">预警数据统计</span>
           </div>
           <el-scrollbar max-height="504" class="mt-3">
             <WelcomeTable />
@@ -236,7 +236,7 @@ const optionsBasis: Array<OptionsType> = [
               >
                 <p class="text-text_color_regular text-sm">
                   {{
-                    `新增 ${item.requiredNumber} 条问题，${item.resolveNumber} 条已解决`
+                    `新增 ${item.warningCount} 条预警，${item.handledCount} 条已处置`
                   }}
                 </p>
               </el-timeline-item>

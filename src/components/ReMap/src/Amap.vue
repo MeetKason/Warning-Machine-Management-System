@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { reactive, getCurrentInstance, onBeforeMount, onUnmounted } from "vue";
+import {
+  computed,
+  reactive,
+  getCurrentInstance,
+  onBeforeMount,
+  onUnmounted
+} from "vue";
 import { deviceDetection } from "@pureadmin/utils";
 import AMapLoader from "@amap/amap-jsapi-loader";
 import { mapJson } from "@/api/mock";
@@ -19,6 +25,21 @@ defineOptions({
   name: "Amap"
 });
 
+const props = withDefaults(
+  defineProps<{
+    height?: string;
+    selectable?: boolean;
+  }>(),
+  {
+    height: "calc(100vh - 86px)",
+    selectable: false
+  }
+);
+
+const emit = defineEmits<{
+  select: [{ lng: number; lat: number; coordinate: string }];
+}>();
+
 let MarkerCluster;
 let map: MapConfigureInter;
 
@@ -27,6 +48,8 @@ const instance = getCurrentInstance();
 const mapSet = reactive({
   loading: deviceDetection() ? false : true
 });
+
+const mapStyle = computed(() => ({ height: props.height }));
 
 // 地图创建完成(动画关闭)
 const complete = (): void => {
@@ -61,6 +84,18 @@ onBeforeMount(() => {
           })
         );
       });
+
+      if (props.selectable) {
+        map.on("click", ({ lnglat }) => {
+          const lng = Number(lnglat.lng.toFixed(6));
+          const lat = Number(lnglat.lat.toFixed(6));
+          emit("select", {
+            lng,
+            lat,
+            coordinate: `${lng},${lat}`
+          });
+        });
+      }
 
       MarkerCluster = new AMap.MarkerCluster(map, [], {
         // 聚合网格像素大小
@@ -124,14 +159,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="mapview" ref="mapview" v-loading="mapSet.loading" />
+  <div
+    id="mapview"
+    ref="mapview"
+    v-loading="mapSet.loading"
+    :style="mapStyle"
+  />
 </template>
 
 <style lang="scss" scoped>
-#mapview {
-  height: calc(100vh - 86px);
-}
-
 :deep(.amap-marker-label) {
   border: none !important;
 }

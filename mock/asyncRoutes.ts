@@ -1,6 +1,14 @@
 // 模拟后端动态生成路由
 import { defineFakeRoute } from "vite-plugin-fake-server/client";
-import { system, monitor, permission, frame, tabs } from "@/router/enums";
+import {
+  system,
+  monitor,
+  permission,
+  frame,
+  tabs,
+  warningmachine,
+  videolibrary
+} from "@/router/enums";
 
 /**
  * roles：页面级别权限，这里模拟二种 "admin"、"common"
@@ -320,6 +328,73 @@ const tabsRouter = {
   ]
 };
 
+const warningMachineRouter = {
+  path: "/warning-machine",
+  meta: {
+    icon: "ep:bell",
+    title: "预警机",
+    rank: warningmachine
+  },
+  children: [
+    {
+      path: "/warning-machine/list",
+      name: "WarningMachineList",
+      meta: {
+        icon: "ep:list",
+        title: "预警机列表",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/warning-machine/info",
+      name: "WarningMachineInfo",
+      meta: {
+        icon: "ep:warning",
+        title: "预警信息",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/warning-machine/statistics",
+      name: "WarningMachineStatistics",
+      meta: {
+        icon: "ep:trend-charts",
+        title: "预警统计",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/warning-machine/factory",
+      name: "WarningMachineFactory",
+      meta: {
+        icon: "ep:office-building",
+        title: "厂家管理",
+        roles: ["admin", "common"]
+      }
+    }
+  ]
+};
+
+const videoLibraryRouter = {
+  path: "/video-library",
+  meta: {
+    icon: "ep:video-camera",
+    title: "视频库",
+    rank: videolibrary
+  },
+  children: [
+    {
+      path: "/video-library/index",
+      name: "VideoLibrary",
+      meta: {
+        icon: "ep:video-play",
+        title: "视频展示",
+        roles: ["admin", "common"]
+      }
+    }
+  ]
+};
+
 export default defineFakeRoute([
   {
     url: "/get-async-routes",
@@ -329,6 +404,8 @@ export default defineFakeRoute([
         code: 0,
         message: "操作成功",
         data: [
+          warningMachineRouter,
+          videoLibraryRouter,
           systemManagementRouter,
           systemMonitorRouter,
           permissionRouter,

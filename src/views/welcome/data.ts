@@ -6,16 +6,16 @@ import Smile from "~icons/ri/star-smile-line";
 
 const days = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
-/** 需求人数、提问数量、解决数量、用户满意度 */
+/** 预警设备数、预警上报量、已处置量、处置满意度 */
 const chartData = [
   {
     icon: GroupLine,
     bgColor: "#effaff",
     color: "#41b6ff",
     duration: 2200,
-    name: "需求人数",
-    value: 36000,
-    percent: "+88%",
+    name: "预警设备数",
+    value: 3280,
+    percent: "+12%",
     data: [2101, 5288, 4239, 4962, 6752, 5208, 7450] // 平滑折线图数据
   },
   {
@@ -23,9 +23,9 @@ const chartData = [
     bgColor: "#fff5f4",
     color: "#e85f33",
     duration: 1600,
-    name: "提问数量",
+    name: "预警上报量",
     value: 16580,
-    percent: "+70%",
+    percent: "+21%",
     data: [2216, 1148, 1255, 788, 4821, 1973, 4379]
   },
   {
@@ -33,9 +33,9 @@ const chartData = [
     bgColor: "#eff8f4",
     color: "#26ce83",
     duration: 1500,
-    name: "解决数量",
+    name: "已处置量",
     value: 16499,
-    percent: "+99%",
+    percent: "+18%",
     data: [861, 1002, 3195, 1715, 3666, 2415, 3645]
   },
   {
@@ -43,14 +43,14 @@ const chartData = [
     bgColor: "#f6f4fe",
     color: "#7846e5",
     duration: 100,
-    name: "用户满意度",
-    value: 100,
-    percent: "+100%",
+    name: "处置满意度",
+    value: 98,
+    percent: "+2%",
     data: [100]
   }
 ];
 
-/** 分析概览 */
+/** 预警分析概览 */
 const barChartData = [
   {
     requireData: [2101, 5288, 4239, 4962, 6752, 5208, 7450],
@@ -62,7 +62,7 @@ const barChartData = [
   }
 ];
 
-/** 解决概率 */
+/** 处置效率 */
 const progressData = [
   {
     week: "周一",
@@ -108,13 +108,13 @@ const progressData = [
   }
 ].reverse();
 
-/** 数据统计 */
+/** 预警统计 */
 const tableData = Array.from({ length: 30 }).map((_, index) => {
   return {
     id: index + 1,
-    requiredNumber: getRandomIntBetween(13500, 19999),
-    questionNumber: getRandomIntBetween(12600, 16999),
-    resolveNumber: getRandomIntBetween(13500, 17999),
+    deviceOnline: getRandomIntBetween(2800, 3600),
+    warningCount: getRandomIntBetween(12600, 16999),
+    handledCount: getRandomIntBetween(11800, 16500),
     satisfaction: getRandomIntBetween(95, 100),
     date: dayjs().subtract(index, "day").format("YYYY-MM-DD")
   };

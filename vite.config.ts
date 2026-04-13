@@ -51,11 +51,11 @@ export default async ({ mode }: ConfigEnv): Promise<UserConfigExport> => {
           chunkFileNames: "static/js/[name]-[hash].js",
           entryFileNames: "static/js/[name]-[hash].js",
           assetFileNames: "static/[ext]/[name]-[hash].[ext]"
-        },
-        checks: {
-          pluginTimings: false,
-          toleratedTransform: false
         }
+        // checks: {
+        //   pluginTimings: false,
+        //   toleratedTransform: false
+        // }
       }
     },
     define: {
